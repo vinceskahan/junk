@@ -122,17 +122,27 @@ exit
 # again sudo to open a weewx account bash shell
 sudo -u weewx bash
 
-# create a $HOME/.ssh/config file
+# create a $HOME/.ssh/config
+Host my_remote_server x.x.x.x               # create hostname aliases for ssh
+IdentityFile ~/.ssh/id_ed25518_weewx_rsync  # use this key specifically
+user myremoteuser                           # to this remote user by default
+hostname x.x.x.x                            # the name or ip address of the remote system
 
-     # define an ssh alias using the remote system's name and address
-     Host my_remote_server x.x.x.x               # create hostname aliases for ssh
-     IdentityFile ~/.ssh/id_ed25518_weewx_rsync  # use this key specifically
-     user myremoteuser                           # to this remote user by default
-     hostname x.x.x.x                            # the name or ip address of the remote system
+# make sure the permissions are ok
+chmod 600 $HOME/.ssh/config
 ```
 
-The effect of the above is you should be able to "ssh my_remote_server" or "ssh x.x.x.x" and log right in with no password prompt.  You will need to answer 'yes' when prompted the first time you try to ssh into that ip address or hostname alias.
+The effect of the above is you should be able to "ssh my_remote_server" or "ssh x.x.x.x" and log right in with no password prompt.  You will need to answer 'yes' once if prompted to trust the remote computer.  The prompt will look something like the following:
+
+```
+weewx@nuc2:/$ ssh pi@192.168.1.69
+The authenticity of host '192.168.1.69 (192.168.1.69)' can't be established.
+ED25519 key fingerprint is SHA256:BR18M3PyFgvHldjnQf/vOdJyWvviL1B5hYQsBkDONlA.
+This key is not known by any other names.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '192.168.1.69' (ED25519) to the list of known hosts.
+(and so on)
+```
 
 5. Then edit the weewx.conf RSYNC settings per the WeeWX documentation [https://www.weewx.com/docs/5.2/reference/weewx-options/stdreport/#rsync](LINK) and restart weewx to make the changes take effect.
-
 
