@@ -16,14 +16,14 @@ The WeeWX RSYNC uploader uses the rsync protocol over a ssh transport layer, usi
 The short list of what is needed is:
 
 * the WeeWX user needs to generate a passwordless public/private key pair
-** for a packaged installation, this is user 'weewx'
-** for a pip installation, this is the user you use for the venv
+  * for a packaged installation, this is user 'weewx'
+  * for a pip installation, this is the user you use for the venv
 
 * the remote server account needs to be configured to accept the 'public' key from the WeeWX account
-** $HOME/.ssh/authorized_keys file needs an entry for the WeeWX account's public key
+  * $HOME/.ssh/authorized_keys file needs an entry for the WeeWX account's public key
 
 * the WeeWX user needs to trust that the remote server is indeed the desired remote server, and not a man-in-the-middle
-** the remote computer's 'host' key needs to be in the WeeWX account's $HOME/.ssh/known_hosts file
+  *  the remote computer's 'host' key needs to be in the WeeWX account's $HOME/.ssh/known_hosts file
 
 ### How To Set It Up
 
@@ -38,7 +38,7 @@ The short list of what is needed is:
 >              then do the remaining local steps and 'exit' to close the shell
 >
 
-2. Generate a public/private keypair for WeeWX RSYNC transactions
+2. Generate a public/private keypair for WeeWX RSYNC transactions and name it something that makes sense to you
 
 ```
 # use sudo to open a shell as user weewx
@@ -49,7 +49,6 @@ weewx@nuc2:~$ id
 uid=1234(weewx) gid=1234(weewx) groups=1234(weewx),100(users)
 
 # generate a keypair, naming the filenames something obvious to you
-
 weewx@nuc2:~$ ssh-keygen
 Generating public/private ed25519 key pair.
 Enter file in which to save the key (/home/weewx/.ssh/id_ed25519): /home/weewx/.ssh/id_ed25519_weewx_rsync
@@ -82,12 +81,12 @@ drwxr-x--- 3 weewx 4096 Dec 24 18:17 ..
 -rw-r--r-- 1 weewx   92 Dec 24 18:18 id_ed25519_weewx_rsync.pub
 ```
 
-Next, use 'ssh-copy-id' to authorize the keypair on the remote computer
+3. Next, use 'ssh-copy-id' to authorize the keypair on the remote computer
 
 ```
 # authorize the key, entering the remote account's password when prompted
 
-weewx@nuc2:~/.ssh$ ssh-copy-id -i id_ed25519_weewx_rsync.pub vince@192.168.1.171
+weewx@nuc2:~/.ssh$ ssh-copy-id -i id_ed25519_weewx_rsync.pub myremoteuser@192.168.1.171
 /usr/bin/ssh-copy-id: INFO: Source of key(s) to be installed: "id_ed25519_weewx_rsync.pub"
 The authenticity of host '192.168.1.171 (192.168.1.171)' can't be established.
 ED25519 key fingerprint is SHA256:TK3TA6mOcRe7kYq2Z/UfgvmzHlPtVTx4UcLTiwdgwR8.
@@ -95,20 +94,20 @@ This key is not known by any other names.
 Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
 /usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed
 /usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys
-vince@192.168.1.171's password:
+myremoteuser@192.168.1.171's password:
 
 Number of key(s) added: 1
 
-Now try logging into the machine, with:   "ssh 'vince@192.168.1.171'"
+Now try logging into the machine, with:   "ssh 'myremoteuser@192.168.1.171'"
 and check to make sure that only the key(s) you wanted were added.
 
 # verify it indeed works. Since we named the keypair we need the -i parameter in this test
-weewx@nuc2:~/.ssh$ ssh -i id_ed25519_weewx_rsync vince@192.168.1.171
+weewx@nuc2:~/.ssh$ ssh -i id_ed25519_weewx_rsync myremoteuser@192.168.1.171
 Welcome to Ubuntu 24.04.3 LTS (GNU/Linux 6.8.0-83-generic x86_64)
 Last login: Wed Dec 24 18:15:05 2025 from 192.168.1.51
 
 # exit the shell on the remote computer
-vince@nuc2:~$ exit
+myremoteuser@nuc2:~$ exit
 logout
 Connection to 192.168.1.171 closed.
 
@@ -117,7 +116,7 @@ weewx@nuc2:~$ exit
 exit
 ```
 
-At this point if you named your keypair you should do a little more configuration so using '-i' in your ssh command is not required
+4. At this point if you named your keypair you should do a little more configuration so using '-i' in your ssh command is not required
 
 ```
 # again sudo to open a weewx account bash shell
@@ -134,5 +133,6 @@ sudo -u weewx bash
 
 The effect of the above is you should be able to "ssh my_remote_server" or "ssh x.x.x.x" and log right in with no password prompt.  You will need to answer 'yes' when prompted the first time you try to ssh into that ip address or hostname alias.
 
-Then set up the weewx.conf RSYNC settings per the WeeWX documentation [https://www.weewx.com/docs/5.2/reference/weewx-options/stdreport/#rsync](LINK)
+5. Then edit the weewx.conf RSYNC settings per the WeeWX documentation [https://www.weewx.com/docs/5.2/reference/weewx-options/stdreport/#rsync](LINK) and restart weewx to make the changes take effect.
+
 
