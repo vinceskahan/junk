@@ -28,15 +28,16 @@ The short list of what is needed is:
 ### How To Set It Up
 
 1. Log in as the WeeWX user on the WeeWX computer
-    a. if you run a 'pip' installation, this is the user you created the venv under
-    b. if you run a packaged installation, this is user 'weewx'
+    a. if you run a packaged installation, this is user 'weewx'
+    b. if you run a 'pip' installation, this is the user you created the venv under
 
->[!TIP]
-> The 'weewx' user in v5 has its account set to not permit interactive logins, so you need to use sudo (as root) to open the required shell
->
-> To do this:  'sudo -u weewx bash' which will open the required shell
->              then do the remaining local steps and 'exit' to close the shell
->
+      >[!TIP]
+      > For pip installations only:
+      >  The 'weewx' user in v5 has its account set to not permit interactive logins, so you need to use sudo (as root) to open the required shell
+      >
+      > To do this:  'sudo -u weewx bash' which will open a shell as user 'weewx'
+      >              then do the remaining local steps and 'exit' to close the shell
+      >
 
 2. Generate a public/private keypair for WeeWX RSYNC transactions and name it something that makes sense to you
 
