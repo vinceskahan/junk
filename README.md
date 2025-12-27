@@ -50,7 +50,7 @@ If you run a packaged installation, this is user 'weewx' but this account set do
 
 ### (2) Generate a public/private keypair
 
-Next run `ssh-keygen` to create a public/private key pair.  Take the defaults.  Optionally specify a filename you want to use for the keypair so that your have a keypair for WeeWX rsync operations only.
+Next run `ssh-keygen` to create a public/private key pair.  Take the defaults.  Optionally specify a filename you want to use for the keypair so that you have a keypair for WeeWX rsync operations only.
 
 The remainder of this example assumes you will name the keypair.
 
