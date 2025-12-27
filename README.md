@@ -82,7 +82,7 @@ The key's randomart image is:
 
 You may get a one-time prompt asking you to ok that the
 remote system is the host you think it is.  Answer 'yes'
-to make it a known_host in your local ~/.ssh/known_hosts file
+to make it a known_host in your local `~/.ssh/known_hosts` file
 
 You will then be prompted for the remote user password.
 When the ssh-copy-id has completed successfully, the
