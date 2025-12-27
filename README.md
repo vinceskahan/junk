@@ -117,9 +117,9 @@ logout
 Connection to pi4jr closed.
 ````
 
-### (5) edit your ~/ssh/config file and add an entry for your remote host
+### (5) edit your ~/.ssh/config file and add an entry for your remote host
 
-For hostname, use the hostname you used above. For this example, the file would contain.
+For hostname, use the hostname you used above. For this example, the file would contain the following.
 
 ````
 host pi4jr
@@ -130,7 +130,7 @@ host pi4jr
 
 ### (6) test that the passwordless keypair works without needing to specify the key name
 
-A  successful test does not prompt for a password
+A successful test does not prompt for a password.
 
 ```
 [vince@mini ~]$ ssh pi4jr
@@ -144,7 +144,7 @@ Connection to pi4jr closed.
 
 ### (7) edit weewx.conf file to set up the RSYNC uploader
 
-Use the remote server name or ip you specified above
+Use the remote server name or ip you specified above.
 
 ````
 [[RSYNC]]
