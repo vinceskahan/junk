@@ -34,9 +34,11 @@ In this test:
  * the local user is 'vince' with home directory '/Users/vince'
  * the remote host is named 'pi4jr'
  * the remote user is 'pi' with home directory '/home/pi'
- * we're specifying uploading the local weewx public_html
-     to the remote path /home/pi/from_mac_mini
+ * we're specifying uploading the local weewx HTML_ROOT's public_html tree
+     to the remote path '/home/pi/from_mac_mini'
  * this example names the keypair 'id_weersync_test'
+
+This example has 'many' steps in order to walk you through how to verify your setup step-by-step nice and slowly.
 
 ### (1) Log in as the WeeWX user on the WeeWX computer
 
