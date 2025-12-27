@@ -22,24 +22,23 @@ The short list of what is needed is:
   * for a pip installation, this is the user you use for the venv
 
 * the remote server account needs to be configured to accept the 'public' key from the WeeWX account
-  * $HOME/.ssh/authorized_keys file needs an entry for the WeeWX account's public key
+  * `$HOME/.ssh/authorized_keys file` needs an entry for the WeeWX account's public key
 
 * the WeeWX user needs to trust that the remote server is indeed the desired remote server, and not a man-in-the-middle
-  *  the remote computer's 'host' key needs to be in the WeeWX account's $HOME/.ssh/known_hosts file
+  *  the remote computer's 'host' key needs to be in the WeeWX account's `$HOME/.ssh/known_hosts` file
 
-* at that point, you need to edit `weewx.conf` to set up the `[RSYNC]` stanza, then restart weewx
+* at that point, you need to edit `weewx.conf` to set up the `[RSYNC]` stanza, then restart WeeWX
 
 ## How To Set It Up
 
-This is an example of setting up passwordless ssh for weewx's rsync uploader.
+This is an example of setting up passwordless ssh for WeeWX's rsync uploader.
 
 In this test:
  * the local host is a mac mini named 'mini'
  * the local user is 'vince' with home directory '/Users/vince'
  * the remote host is named 'pi4jr'
  * the remote user is 'pi' with home directory '/home/pi'
- * we're specifying uploading the local weewx HTML_ROOT's public_html tree
-     to the remote path '/home/pi/from_mac_mini'
+ * we want to upload to the remote path '/home/pi/from_mac_mini'
  * this example names the keypair 'id_weersync_test'
 
 ### (1) Log in as the WeeWX user on the WeeWX computer
@@ -51,9 +50,9 @@ If you run a packaged installation, this is user 'weewx' but this account set do
 
 ### (2) Generate a public/private keypair
 
-Next run `ssh-keygen` to create a public/private key pair.  Take the defaults.  Optionally specify a filename you want to use for the keypair so that your have a keypair for weewx rsync operations only.
+Next run `ssh-keygen` to create a public/private key pair.  Take the defaults.  Optionally specify a filename you want to use for the keypair so that your have a keypair for WeeWX rsync operations only.
 
-The remainder of this example assume you will name the keypair.
+The remainder of this example assumes you will name the keypair.
 
 ````
 [vince@mini ~]$ ssh-keygen
@@ -120,7 +119,7 @@ Connection to pi4jr closed.
 
 ### (5) edit your ~/ssh/config file and add an entry for your remote host
 
-For hostname, use the hostname you used above.  For this example, the file would look like:
+For hostname, use the hostname you used above. For this example, the file would contain.
 
 ````
 host pi4jr
@@ -158,7 +157,7 @@ Use the remote server name or ip you specified above
 
 ### (8) Test the RSYNC uploader works
 
-For a 'pip' installation of weewx, remember to activate your venv as always by running `source ~/weewx-venv/bin/activate`.
+For a 'pip' installation of WeeWX, remember to activate your venv as always by running `source ~/weewx-venv/bin/activate`.
 
 A successful test does not prompt you for a password.
 
@@ -170,10 +169,12 @@ Generating as of last timestamp in the database.
 Done.
 ````
 
+As a final check, verify your WeeWX `public_html` tree was indeed copied to the remote server.
+
 ### AT THIS POINT YOUR SETUP IS COMPLETE
 
-Restart weewx and the rsync handler should work when
+Restart WeeWX and the rsync handler should work when
 your next report interval occurs.  Check your remote
-system and your weewx logs to be certain.
+system and your WeeWX logs to be certain.
 
 
