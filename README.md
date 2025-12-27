@@ -5,7 +5,9 @@ The Reference => StdReport => RSYNC section in the docs has the following senten
 
   _"If you wish to use rsync, you must configure passwordless ssh using public/private key authentication from the user account that WeeWX runs, to the user account on the remote machine where the files will be copied."_
 
-This example will walk you through how configure your ssh and WeeWX setup step-by-step, validating that each step has been completed successfully before proceeding to the next step.  Complete setup should ideally take just a few minutes of your time.  Please read all of this document once before executing any of the steps.
+This example will walk you through how configure your ssh and WeeWX setup step-by-step, validating that each step has been completed successfully before proceeding to the next step.  Complete setup should ideally take just a few minutes of your time.
+
+Please read all of this document once before executing any of the steps.
 
 ## How The RSYNC Uploader Works
 
@@ -25,6 +27,8 @@ The short list of what is needed is:
 * the WeeWX user needs to trust that the remote server is indeed the desired remote server, and not a man-in-the-middle
   *  the remote computer's 'host' key needs to be in the WeeWX account's `$HOME/.ssh/known_hosts` file
 
+* some minimal setup of your `$HOME/.ssh/config` file is necessary
+
 * at that point, you need to edit `weewx.conf` to set up the `[RSYNC]` stanza, then restart WeeWX
 
 ## How To Set It Up
@@ -33,7 +37,7 @@ This is an example of setting up passwordless ssh for WeeWX's rsync uploader.
 
 You will of course want to define your own values for the items this example uses below.
 
-In this test:
+In this example:
  * the local host is a mac mini named 'mini'
  * the local user is 'vince' with home directory '/Users/vince'
  * the remote host is named 'pi4jr'
@@ -44,14 +48,18 @@ In this test:
 
 ### (1) Log in as the WeeWX user on the WeeWX computer
 
-If you run a 'pip' installation, this is the user you created the venv under.  Simply open a terminal shell.
+If you run a 'pip' installation, this is the user you created the venv under.  Simply open a terminal shell then go to step (2) below.
 
-If you run a packaged installation, this is user 'weewx' but this account set does not permit interactive logins. To get around this, we need to use `sudo` to open the required shell by running `sudo -u weewx bash`.  Then run `id -un` and `id -gn` which should both report `weewx` as your user and group.  You will be in a bash shell as user 'weewx' group 'weewx' which is what a v5 pip installation runs as.
-
+If you run a packaged installation, this is user 'weewx' but this account set does not permit interactive logins. To get around this, we need to use `sudo` to open the required shell by:
+* run `sudo -u weewx bash` to open a bash shell as user 'weewx'
+* then run `id -un` and `id -gn` to validate your your user and group are 'weewx'.
+* then go to step (2) below
 
 ### (2) Generate a public/private keypair
 
-Next run `ssh-keygen` to create a public/private key pair.  Take the defaults.  Optionally specify a filename you want to use for the keypair so that you have a keypair for WeeWX rsync operations only.
+Next run `ssh-keygen` to create a public/private key pair.  Take the defaults and simply hit return when prompted for passphrase.  
+
+Optionally specify a filename you want to use for the keypair so that you have a keypair for WeeWX rsync operations only.
 
 The remainder of this example assumes you will name the keypair.
 
@@ -89,7 +97,7 @@ You will then be prompted for the remote user password.
 When the ssh-copy-id has completed successfully, the
 specified key is set up on the remote server.
 
-I have added a couple blank lines below to make the output a little easier to read.
+Blank lines have been added to this transcript to make the output a little easier to read.
 
 ````
 [vince@mini ~]$ ssh-copy-id -i $HOME/.ssh/id_weersync_test pi@pi4jr
@@ -126,6 +134,9 @@ Connection to pi4jr closed.
 
 ### (5) edit your ~/.ssh/config file and add an entry for your remote host
 
+Next we create a ssh host alias so our desired ssh key is automatically used for 
+transactions to that remote hostname.
+
 For hostname, use the hostname you used above. For this example, the file would contain the following.
 
 ````
@@ -137,7 +148,8 @@ host pi4jr
 
 ### (6) test that the passwordless keypair works without needing to specify the key name
 
-This test verifies step (5) above was done correctly.  We ssh into the remote host.
+This test verifies step (5) above was done correctly.  We ssh into the remote host
+and rely on the config file settings to log into the correct user with the correct key..
 
 A successful test does not prompt for a password.
 
@@ -153,7 +165,11 @@ Connection to pi4jr closed.
 
 ### (7) edit weewx.conf file to set up the RSYNC uploader
 
-Use the remote server name or ip you specified above.
+Now edit weewx.conf to set RSYNC up.
+
+Use the remote server name or ip you specified above in your ssh config file,
+and set the path you want to upload to.  The user is probably not needed due to
+the ssh config settings in step (5), but add it here for completeness.
 
 ````
 [[RSYNC]]
