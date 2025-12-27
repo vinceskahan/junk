@@ -182,6 +182,8 @@ the ssh config settings in step (5), but add it here for completeness.
   user = pi                      # remote user in the ~/.ssh/config
   path = /home/pi/from_mac_mini  # remote path to upload to
   enable = true                  # enable the rsync uploader
+  log_success = true             # log successful uploads (default = false)
+  log_failure = true             # log unsuccessful uploads (default = false)
 
 ````
 
@@ -205,8 +207,15 @@ As a final check, verify your WeeWX `public_html` tree was indeed copied to the 
 
 ### AT THIS POINT YOUR SETUP IS COMPLETE
 
-Restart WeeWX and the rsync handler should work when
-your next report interval occurs.  Check your remote
+Restart WeeWX and the RSYNC uploader should run successfully
+when your next report interval occurs.  Check your remote
 system and your WeeWX logs to be certain.
+
+When in doubt, set `debug = 1` in your `weewx.conf` to cause
+WeeWX to use more verbose logging.
+
+If everything is working ok, setting `log_success = false` will minimize your logging so
+that only failures are logged.   As always, you will need to restart WeeWX whenever you
+make changes to `weewx.conf`.
 
 
