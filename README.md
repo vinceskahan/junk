@@ -27,6 +27,8 @@ The short list of what is needed is:
 * the WeeWX user needs to trust that the remote server is indeed the desired remote server, and not a man-in-the-middle
   *  the remote computer's 'host' key needs to be in the WeeWX account's $HOME/.ssh/known_hosts file
 
+* at that point, you need to edit `weewx.conf` to set up the `[RSYNC]` stanza, then restart weewx
+
 ## How To Set It Up
 
 This is an example of setting up passwordless ssh for weewx's rsync uploader.
