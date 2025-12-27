@@ -89,11 +89,16 @@ The key's randomart image is:
 
 ### (3) Authorize the specified key on the remote account@system
 
-You may get a one-time prompt asking you to ok that the
+Next we use `ssh-copy-id` to copy the desired ssh key into the remote
+user's `$HOME/.ssh/authorized_keys` file.  This requires you to know
+the password for the remote user.
+
+You may also get a one-time prompt asking you to ok that the
 remote system is the host you think it is.  Answer 'yes'
 to make it a known_host in your local `~/.ssh/known_hosts` file
 
 You will then be prompted for the remote user password.
+
 When the ssh-copy-id has completed successfully, the
 specified key is set up on the remote server.
 
@@ -135,7 +140,7 @@ Connection to pi4jr closed.
 ### (5) edit your ~/.ssh/config file and add an entry for your remote host
 
 Next we create a ssh host alias so our desired ssh key is automatically used for 
-transactions to that remote hostname.
+transactions to that remote hostname and that we will use the correct key by default..
 
 For hostname, use the hostname you used above. For this example, the file would contain the following.
 
@@ -149,7 +154,7 @@ host pi4jr
 ### (6) test that the passwordless keypair works without needing to specify the key name
 
 This test verifies step (5) above was done correctly.  We ssh into the remote host
-and rely on the config file settings to log into the correct user with the correct key..
+and rely on the ssh config file settings to log into the correct user with the correct key.
 
 A successful test does not prompt for a password.
 
@@ -165,7 +170,7 @@ Connection to pi4jr closed.
 
 ### (7) edit weewx.conf file to set up the RSYNC uploader
 
-Now edit weewx.conf to set RSYNC up.
+Now we can finally edit weewx.conf to set RSYNC up.
 
 Use the remote server name or ip you specified above in your ssh config file,
 and set the path you want to upload to.  The user is probably not needed due to
