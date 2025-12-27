@@ -9,7 +9,9 @@ Understanding how to set up passwordless ssh can be difficult for new users to l
 
 ## How The RSYNC Uploader Works
 
-The WeeWX RSYNC uploader uses the rsync protocol over a ssh transport layer, using passwordless key pairs.  What this means is the WeeWX computer needs to be able to ssh into the desired remote server, without any prompts for a username or password.  To set this up, a few 'one time' steps are required.
+The WeeWX RSYNC uploader uses the rsync protocol over a ssh transport layer, using passwordless key pairs.  What this means is the WeeWX computer needs to be able to ssh into the desired remote server, without any prompts for a username or password.  A one-time setup is required.
+
+This example will walk you through how to do so, step--by-step, validating each step has been completed successully before proceeding to the next step.  Complete setup should ideally take just a few minutes of your time.
 
 ## What Is Needed
 
@@ -37,8 +39,6 @@ In this test:
  * we're specifying uploading the local weewx HTML_ROOT's public_html tree
      to the remote path '/home/pi/from_mac_mini'
  * this example names the keypair 'id_weersync_test'
-
-This example has 'many' steps in order to walk you through how to verify your setup step-by-step nice and slowly.
 
 ### (1) Log in as the WeeWX user on the WeeWX computer
 
@@ -154,7 +154,7 @@ Use the remote server name or ip you specified above
 
 ````
 
-### (8) Test by running `weectl report run RSYNC`
+### (8) Test the RSYNC uploader works
 
 For a 'pip' installation of weewx, remember to activate your venv as always by running `source ~/weewx-venv/bin/activate`.
 
@@ -173,4 +173,5 @@ Done.
 Restart weewx and the rsync handler should work when
 your next report interval occurs.  Check your remote
 system and your weewx logs to be certain.
+
 
