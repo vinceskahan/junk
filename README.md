@@ -11,7 +11,7 @@ Understanding how to set up passwordless ssh can be difficult for new users to l
 
 The WeeWX RSYNC uploader uses the rsync protocol over a ssh transport layer, using passwordless key pairs.  What this means is the WeeWX computer needs to be able to ssh into the desired remote server, without any prompts for a username or password.  A one-time setup is required.
 
-This example will walk you through how to do so, step--by-step, validating each step has been completed successully before proceeding to the next step.  Complete setup should ideally take just a few minutes of your time.
+This example will walk you through how to do so, step-by-step, validating each step has been completed successully before proceeding to the next step.  Complete setup should ideally take just a few minutes of your time.
 
 ## What Is Needed
 
