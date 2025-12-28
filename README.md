@@ -137,7 +137,7 @@ logout
 Connection to pi4jr closed.
 ````
 
-### (5) edit your ~/.ssh/config file and add an entry for your remote host
+### (5) Edit your ~/.ssh/config file and add an entry for your remote host
 
 Next we create a ssh host alias so our desired ssh key is automatically used for 
 transactions to that remote hostname and that we will use the correct key by default..
@@ -151,14 +151,14 @@ host pi4jr
  identityfile ~/.ssh/id_weersync_test
 ````
 
-### (6) test that the passwordless keypair works without needing to specify the key name
+### (6) Test that the passwordless keypair works without needing to specify the key name
 
 This test verifies step (5) above was done correctly.  We ssh into the remote host
 and rely on the ssh config file settings to log into the correct user with the correct key.
 
 A successful test does not prompt for a password.
 
-```
+````
 [vince@mini ~]$ ssh pi4jr
 Linux pi4jr 6.12.47+rpt-rpi-v8 #1 SMP PREEMPT Debian 1:6.12.47-1+rpt1 (2025-09-16) aarch64
 Last login: Fri Dec 26 15:07:04 2025 from 192.168.1.51
@@ -168,7 +168,7 @@ logout
 Connection to pi4jr closed.
 ````
 
-### (7) edit weewx.conf file to set up the RSYNC uploader
+### (7) Edit weewx.conf file to set up the RSYNC uploader
 
 Now we can finally edit weewx.conf to set RSYNC up.
 
