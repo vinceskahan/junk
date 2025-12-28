@@ -176,15 +176,23 @@ Use the remote server name or ip you specified above in your ssh config file,
 and set the path you want to upload to.  The user is probably not needed due to
 the ssh config settings in step (5), but add it here for completeness.
 
+The long commentary in the default [[RSYNC]] section has been deleted below
+for brevity, and the optional `log_success` and `log_failure` items have
+been added.
+
 ````
 [[RSYNC]]
+  skin = Rsync                   # RSYNC is actually a skin as WeeWX uses the term
+  enable = true                  # enable the rsync uploader
+
   server = pi4jr                 # remote host alias in ~/.ssh/config
   user = pi                      # remote user in the ~/.ssh/config
   path = /home/pi/from_mac_mini  # remote path to upload to
-  enable = true                  # enable the rsync uploader
+
   log_success = true             # log successful uploads (default = false)
   log_failure = true             # log unsuccessful uploads (default = false)
 
+  delete = 0                     # (default)
 ````
 
 ### (8) Test the RSYNC uploader works
