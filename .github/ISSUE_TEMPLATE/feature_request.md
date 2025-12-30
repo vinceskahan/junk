@@ -1,11 +1,8 @@
 ---
 name: membership-request.yml
 about: Describe this issue template's purpose here.
-title: ''
-labels: ''
-assignees: vinceskahan
 body:
-  - type: markdown
+ - type: markdown
     attributes:
       value: |
         Thanks for taking the time to fill out this bug report!
