@@ -18,7 +18,7 @@ body:
   - type: input
     id: github_username
     attributes:
-      label: Github Username
+      label: Github Username (ie, my_username_here)
       placeholder: my_username_here
     validations:
       required: false
@@ -26,7 +26,7 @@ body:
   - type: input
     id: github_url
     attributes:
-      label: Github URL
+      label: Github URL (ie, https://github.com/my_username_here)
       placeholder: https://github.com/my_username_here
     validations:
       required: false
