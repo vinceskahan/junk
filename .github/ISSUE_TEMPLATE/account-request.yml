@@ -11,6 +11,10 @@ body:
         Thanks for taking the time to fill out this request.
         We need some information in order to give you write access.
 
+        Reminder - you need to be specifically added in order to
+          create repos here, but 'read' access is available to
+          all github users.
+
   - type: input
     id: github_username
     attributes:
