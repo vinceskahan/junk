@@ -1,6 +1,6 @@
 name: Org membership request form
 description: request we add you to this github organization
-title: "[Bug]: "
+title: "Github Org Membership Request for: "
 
 body:
   - type: markdown
