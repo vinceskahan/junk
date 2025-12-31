@@ -1,4 +1,4 @@
-name: Org membership request form
+name: 
 description: request we add you to this github organization
 title: "Github Org Membership Request for: "
 
@@ -12,7 +12,7 @@ body:
   - type: input
     id: github_username
     attributes:
-      label: Github Username
+      label: "Github Username"
       placeholder: myusername
     validations:
       required: false
@@ -20,7 +20,7 @@ body:
   - type: input
     id: github_url
     attributes:
-      label: Github URL
+      label: "Github URL"
       placeholder: "https://github.com/myusername"
     validations:
       required: false
