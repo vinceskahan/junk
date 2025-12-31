@@ -9,7 +9,7 @@ body:
     attributes:
       value: |
         Thanks for taking the time to fill out this request.
-        We need a tiny bit of information in order to give you write access.
+        We need some information in order to give you write access.
 
   - type: input
     id: github_username
@@ -27,3 +27,11 @@ body:
     validations:
       required: false
 
+  - type: markdown
+    attributes:
+      value: |
+        Reminder - we are all volunteers here, so your request
+               might take a little time for it to be processed.
+
+        While waiting, please familiarize yourself with the
+        information at https://github.com/weewx-contrib/README-FIRST
