@@ -1,6 +1,8 @@
 name: Access Request
 description: Request we add you to this github organization
 title: "Access Request for user: "
+labels: []
+assignees: []
 
 body:
   - type: markdown
