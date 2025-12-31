@@ -1,22 +1,27 @@
-name: Bug report
-description: File a bug report to help us improve
+name: Org membership request form
+description: request we add you to this github organization
 title: "[Bug]: "
-labels: ["bug", "triage"]
-assignees: []
 
 body:
   - type: markdown
     attributes:
       value: |
-        Thanks for taking the time to fill out this bug report!
-        Please ensure you search existing issues before creating a new one.
+        Thanks for taking the time to fill out this membership request !
+        We need a couple pieces of information to enable you to participate.
 
   - type: input
-    id: version
+    id: github_username
     attributes:
-      label: Version
-      description: What version of our software are you running?
-      placeholder: e.g. 1.0.0
+      label: Github Username
+      placeholder: myusername
+    validations:
+      required: false
+
+  - type: input
+    id: github_url
+    attributes:
+      label: Github URL
+      placeholder: https://github.com/myusername
     validations:
       required: false
 
