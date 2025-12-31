@@ -1,0 +1,29 @@
+name: Access Request
+description: Request we add you to this github organization
+title: "Access Request for user: "
+labels: []
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this request.
+        We need a tiny bit of information in order to give you write access.
+
+  - type: input
+    id: github_username
+    attributes:
+      label: Github Username
+      placeholder: my_username_here
+    validations:
+      required: false
+
+  - type: input
+    id: github_url
+    attributes:
+      label: Github URL
+      placeholder: https://github.com/my_username_here
+    validations:
+      required: false
+
